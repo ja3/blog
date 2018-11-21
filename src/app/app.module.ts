@@ -7,13 +7,14 @@ import { NewPostComponent } from './new-post/new-post.component';
 import {Routes, RouterModule} from '@angular/router'
 import {  ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
+import { PostsService } from './services/posts.service';
 
 
 const appRoutes: Routes = [
   { path: 'posts',  component: PostListComponent },
   { path: 'new', component: NewPostComponent },
   { path: '', redirectTo: 'posts', pathMatch: 'full' },
-  
+  { path: '**', redirectTo: 'posts' }
 ];
 
 
@@ -33,7 +34,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [
+    PostsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
